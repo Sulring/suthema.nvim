@@ -1,0 +1,144 @@
+*suthema.txt*  A powerful theme manager for Neovim
+*suthema*
+
+================================================================================
+CONTENTS                                                       *suthema-contents*
+
+  1. Introduction ............................ |suthema-introduction|
+  2. Requirements ............................ |suthema-requirements|
+  3. Installation ............................ |suthema-installation|
+  4. Configuration ........................... |suthema-configuration|
+  5. Usage ................................... |suthema-usage|
+  6. Commands ................................ |suthema-commands|
+  7. Mappings ................................ |suthema-mappings|
+  8. API ..................................... |suthema-api|
+  9. Troubleshooting ......................... |suthema-troubleshooting|
+
+================================================================================
+1. INTRODUCTION                                               *suthema-introduction*
+
+Suthema is a powerful theme manager for Neovim that provides automatic theme
+discovery, persistent settings, and multiple UI options. It helps you manage and
+switch between different colorschemes easily while remembering your preferences.
+
+Features:~
+  • Automatic theme discovery
+  • Theme persistence across sessions
+  • Quick theme switching
+  • Theme history tracking
+  • Default theme setting
+  • Persistent configuration
+
+================================================================================
+2. REQUIREMENTS                                              *suthema-requirements*
+
+Suthema requires:
+  • Neovim >= 0.8.0
+
+================================================================================
+3. INSTALLATION                                              *suthema-installation*
+
+Using lazy.nvim: >
+    {
+        "Sulring/suthema.nvim",
+        config = function()
+            require("suthema").setup({
+                -- your configuration
+            })
+        end,
+    }
+<
+
+Using packer.nvim: >
+    use {
+        'Sulring/suthema.nvim',
+        config = function()
+            require('suthema').setup({
+                -- your configuration
+            })
+        end
+    }
+<
+
+================================================================================
+4. CONFIGURATION                                            *suthema-configuration*
+
+Suthema can be configured by passing a table to the setup function. Here are all
+available options with their defaults:
+
+>
+    require("suthema").setup({
+        -- Path where settings are saved
+        save_file = vim.fn.stdpath("data") .. "/suthema.json",
+
+        -- Directory to search for themes
+        theme_dir = vim.fn.stdpath("data") .. "/lazy",
+
+        -- Keymappings
+        keys = {
+            toggle = "<leader>th", -- Toggle theme selector
+            next = "<leader>tn",   -- Next theme
+            prev = "<leader>tp",   -- Previous theme
+            set_default = "<C-d>", -- Set as default theme
+        },
+    })
+<
+
+================================================================================
+5. USAGE                                                          *suthema-usage*
+
+There are several ways to interact with Suthema:
+
+1. Theme Selector:~
+   Press |<leader>th| to open the theme selector.
+   In the selector:
+   • Press |<CR>| to apply a theme
+   • Press |<C-d>| to set the current theme as default
+   • Press |q| to close the window (floating window only)
+
+2. Quick Theme Switching:~
+   • |<leader>tn| - Switch to the next theme
+   • |<leader>tp| - Switch to the previous theme
+
+3. Theme History:~
+   Suthema automatically maintains a history of your recently used themes
+   and restores your last used theme when Neovim starts.
+
+================================================================================
+6. COMMANDS                                                    *suthema-commands*
+
+Suthema does not provide any commands by default, but relies on keymappings
+for interaction.
+
+================================================================================
+7. MAPPINGS                                                    *suthema-mappings*
+
+Default mappings:~
+
+|<leader>th|   Toggle theme selector
+|<leader>tn|   Switch to next theme
+|<leader>tp|   Switch to previous theme
+|d| 	     Set current theme as default (in selector)
+
+All mappings can be customized in the setup configuration.
+
+================================================================================
+8. API                                                            *suthema-api*
+
+Suthema provides a Lua API for programmatic control:
+
+require("suthema").setup({...})                              *suthema.setup()*
+    Initialize suthema with the given configuration.
+
+require("suthema.themes").apply_theme(name)                  *suthema.apply_theme()*
+    Apply a specific theme by name.
+
+require("suthema.themes").next_theme()                       *suthema.next_theme()*
+    Switch to the next theme in the list.
+
+require("suthema.themes").prev_theme()                       *suthema.prev_theme()*
+    Switch to the previous theme in the list.
+
+require("suthema.state").set_default_theme(name)             *suthema.set_default()*
+    Set a theme as the default theme.
+

@@ -1,4 +1,4 @@
-# 🎨 sulthema.nvim
+# 🎨 suthema.nvim
 
 A minialistic theme manager for Neovim with automatic theme discovery, persistent settings.
 
@@ -14,9 +14,9 @@ A minialistic theme manager for Neovim with automatic theme discovery, persisten
 Using [lazy.nvim](https://github.com/folke/lazy.nvim):
 ```lua
 {
-    "youruser/themery.nvim",
+    "youruser/suthema.nvim",
     config = function()
-        require("themery").setup({
+        require("suthema").setup({
             -- your configuration
         })
     end,
@@ -26,7 +26,7 @@ Using [lazy.nvim](https://github.com/folke/lazy.nvim):
 ## Configuration
 
 ```lua
-require("themery").setup({
+require("suthema").setup({
     keys = {
         toggle = "<leader>th", -- Toggle theme selector
         next = "<leader>tn",   -- Next theme

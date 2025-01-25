@@ -1,4 +1,4 @@
-# 🎨 Themery.nvim
+# 🎨 sulthema.nvim
 
 A minialistic theme manager for Neovim with automatic theme discovery, persistent settings.
 
